@@ -1,0 +1,522 @@
+@font-face {
+  font-family: "CustomFont";
+  src: url("/static/Orbitron-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "CustomFont1";
+  src: url("/static/Orbitron-Black.ttf") format("truetype");
+}
+
+@media (max-width: 767px) {
+  .page-container-mobile {
+    position: relative;
+    width: 100vw;
+    height: 100%;
+    overflow-y: scroll;
+
+    /* To hide overflowing content */
+  }
+
+  .top {
+    background-image: url("/Pexels.png");
+    padding: 2rem 1rem;
+    position: relative;
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .centered-text {
+    position: absolute;
+    font-size: 3rem;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "CustomFont", sans-serif;
+    text-align: center;
+    z-index: 1;
+    /* Place the text above the image */
+  }
+
+  .centered-text span {
+    color: white;
+    /* SELECT text color */
+  }
+
+  .centered-text span:last-child {
+    color: #8fd7da;
+    /* MODEL text color */
+  }
+
+  .back-button {
+    padding: 10px 20px;
+    color: #242424;
+    background-color: white;
+    border: none;
+    border-radius: 25px;
+    z-index: 10;
+  }
+
+  .boats-container {
+    max-width: 70rem;
+    padding: 0 2rem;
+    padding-top: 5rem;
+    margin: auto;
+    display: flex;
+    gap: 5rem;
+    justify-content: space-between;
+  }
+
+  .boat-container {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .boat-heading {
+    font-size: 2.5rem;
+    font-weight: bold;
+    font-family: "CustomFont1", sans-serif;
+  }
+
+  .boat-image {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: end;
+  }
+
+  .boat-image::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 17rem;
+    height: 17rem;
+
+    border-radius: 50%;
+    background-color: #eefeff;
+    transition: 0.3s ease-in-out;
+  }
+
+  .boat-container:hover .boat-image::before {
+    background-color: #88cbce;
+  }
+
+  .boat-img {
+    max-width: 24rem;
+    width: 100%;
+    transition: ease-in-out 0.5s;
+    position: relative;
+  }
+
+  .bottom-text {
+
+    margin-top: 3rem;
+    width: 100%;
+    font-size: 0.7rem;
+    color: rgb(75, 71, 71);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .bottom-text p {
+    max-width: 30rem;
+  }
+
+  .boat-container:hover .boat-img {
+    transform: scale(1.2);
+    /* Increase image size on hover */
+  }
+
+  @media (max-width: 1024px) {
+    .boat-image::before {
+      width: 13rem;
+      height: 13rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .boat-image::before {
+      width: 17rem;
+      height: 17rem;
+    }
+
+    .centered-text {
+      font-size: 2.5rem;
+    }
+
+    .back-button {
+      font-size: 1rem;
+      position: fixed;
+      bottom: 50px;
+      left: 50px;
+    }
+
+    .boats-container {
+      display: grid;
+      gap: 4rem;
+      justify-content: center;
+    }
+
+    .boat-container {
+      height: 100%;
+    }
+
+    .bottom-text {
+      bottom: 4.2rem;
+      padding-bottom: 0.5rem;
+      padding-right: 2rem;
+      padding-left: 2rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .boats-container {
+      padding-top: 4.5rem;
+      gap: 3rem;
+    }
+
+    .boat-name {
+      font-size: 1.5rem;
+    }
+
+    .boat-image::before {
+      width: 15rem;
+      height: 15rem;
+    }
+
+    .boat-container {
+      gap: 0.5rem;
+    }
+
+    .top {
+      justify-content: space-between;
+      gap: 2rem;
+      padding: 1rem 1rem;
+    }
+
+    .centered-text {
+      position: relative;
+      left: 0;
+      transform: translateX(0);
+      font-size: 1.5rem;
+      font-weight: 900;
+    }
+
+    .back-button {
+      font-size: 0.9rem;
+    }
+
+    .bottom-text {
+      bottom: 0
+    }
+  }
+
+  @media (max-width: 540px) {
+    .back-button {
+      font-size: 0.8rem;
+    }
+
+    .boat-image::before {
+      width: 17rem;
+      height: 17rem;
+    }
+
+    .boats-container {
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 460px) {
+
+    html,
+    body {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .page-container-mobile {
+      height: 100vh;
+    }
+
+    .boats-container {
+      padding-top: 2rem;
+      gap: 2.5rem;
+    }
+
+    .top {
+      gap: 1rem;
+    }
+
+    .centered-text {
+      font-size: 1.2rem;
+    }
+
+    .boat-image::before {
+      width: 14rem;
+      height: 14rem;
+    }
+
+    .boat-container:hover .boat-img {
+      transform: scale(1.1);
+      /* Increase image size on hover */
+    }
+  }
+
+  @media (max-width: 390px) {
+    .boat-image::before {
+      width: 11rem;
+      height: 11rem;
+    }
+  }
+
+  .page-container {
+    display: none;
+  }
+}
+
+.page-container {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .page-container-mobile {
+    display: none;
+  }
+
+  .page-container {
+    display: inline-block;
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* To hide overflowing content */
+  }
+
+  .background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 20%;
+    object-fit: cover;
+    z-index: -1;
+    /* Move the image behind other elements */
+  }
+
+  .centered-text {
+    position: absolute;
+    font-size: 3rem;
+    top: 0;
+    font-family: "CustomFont", sans-serif;
+    margin-top: 3%;
+    text-align: center;
+    z-index: 1;
+    /* Place the text above the image */
+  }
+
+  .centered-text span {
+    color: white;
+    /* SELECT text color */
+  }
+
+  .centered-text span:last-child {
+    color: #8fd7da;
+    /* MODEL text color */
+  }
+
+  .back-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 3%;
+    margin-top: 3.5%;
+    /* Adjust as needed */
+    padding: 10px 20px;
+    background-color: #ffffff;
+    color: rgb(10, 9, 9);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    z-index: 1;
+    /* Place the button above the image */
+  }
+
+  .boats-container {
+    margin-top: 2%;
+
+    width: 70vw;
+    height: 60vh;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .boat-container {
+    cursor: pointer;
+    width: 25vw;
+    height: 54vh;
+    margin: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .boat-heading {
+    font-size: 2.5rem;
+    font-weight: bold;
+    /* border: 2px solid black; */
+    transform: translateY(-30%);
+    font-family: "CustomFont1", sans-serif;
+  }
+
+  .boat-heading-1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    font-family: "CustomFont1", sans-serif;
+  }
+
+  .boat-image {
+    width: 100%;
+    margin-top: 8%;
+  }
+
+  .boat-image-1 {
+    width: 100%;
+    margin-top: 5%;
+  }
+
+  .boat-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: ease-in-out 0.5s;
+  }
+
+  .boat-img-1 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: ease-in-out 0.5s;
+  }
+
+  .bottom-text {
+    position: absolute;
+    bottom: 40px;
+    font-size: 0.9rem;
+    color: rgb(75, 71, 71);
+    text-align: center;
+    width: 35%;
+  }
+
+  .circular-overlay {
+    position: absolute;
+    margin-left: 5%;
+    margin-top: 1%;
+    width: 16%;
+    height: 32%;
+    background-color: #ebf9fa;
+    border-radius: 50%;
+    z-index: -1;
+    /* Place the overlay behind the image */
+    transition: ease-in-out 0.5s;
+  }
+
+  .circular-overlay-1 {
+    position: absolute;
+    margin-left: 5%;
+    margin-top: 3%;
+    width: 16%;
+    height: 32%;
+    background-color: #ebf9fa;
+    border-radius: 50%;
+    z-index: -1;
+    /* Place the overlay behind the image */
+    transition: ease-in-out 0.5s;
+  }
+
+  .boat-image:hover .boat-img {
+    transform: scale(1.2);
+    /* Increase image size on hover */
+  }
+
+  .boat-image:hover .circular-overlay {
+    background-color: #88cbce;
+  }
+
+  .boat-image-1:hover .boat-img-1 {
+    transform: scale(1.2);
+    /* Increase image size on hover */
+  }
+
+  .boat-image-1:hover .circular-overlay-1 {
+    background-color: #88cbce;
+  }
+
+  @media (max-width: 768px) {
+    .page-container {
+      width: 100vw;
+      overflow: hidden;
+    }
+
+    .centered-text {
+      font-size: 1.1rem;
+      margin-top: 14.5%;
+    }
+
+    .boats-container {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .back-button {
+      font-size: 0.5rem;
+      padding: 5px 10px;
+      margin-top: 3%;
+    }
+
+    .boats-container {
+      width: 80%;
+      margin-top: 20%;
+    }
+
+    .boat-container {
+      width: 60%;
+      height: auto;
+    }
+
+    .boat-heading,
+    .boat-heading-1 {
+      font-size: 2rem;
+    }
+
+    .bottom-text {
+      bottom: 10px;
+      width: 75%;
+      font-size: 10px;
+    }
+
+    .circular-overlay,
+    .circular-overlay-1 {
+      width: 100px;
+      /* Adjust overlay width */
+      height: 100px;
+      /* Adjust overlay height */
+      margin-left: 45px;
+      /* Adjust margin */
+      margin-top: 20px;
+      /* Adjust margin */
+    }
+  }
+}

@@ -1,0 +1,108 @@
+@font-face {
+  font-family: "CustomFont4";
+  src: url("/static/Orbitron-Bold.ttf") format("truetype");
+}
+
+.color-container {
+  width: 250px;
+  height: auto;
+  background-color: rgba(255, 255, 255, 0.699);
+  position: absolute;
+  bottom: 125px;
+  right: 1.2rem;
+  border-radius: 20px;
+  transition: 0.5s all ease-out;
+  color: #213547;
+}
+
+@media screen and (min-width: 640px) {
+  .color-container {
+    top: 0.8rem;
+    right: 0.9rem;
+    bottom: unset;
+    opacity: 0.7;
+  }
+  .colors-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid rgba(216, 210, 210, 0.767);
+    /* border: 2px solid rgba(216, 210, 210, 0.767); */
+    padding: 10px 0;
+    margin: 20px 0;
+  }
+}
+
+.color-container:hover {
+  opacity: 1;
+}
+
+.slider {
+  margin: auto;
+  width: 100%;
+  padding-top: 5px;
+  font-family: "CustomFont4", sans-serif;
+}
+
+.color-card-icon {
+  padding-top: 5px;
+  font-weight: 400;
+}
+
+.color-card-title {
+  /* border: 1px solid black; */
+  display: flex;
+  font-weight: 600;
+  padding: 8px 0;
+  justify-content: space-around;
+}
+
+.color-card-title svg {
+  font-size: 1.3rem;
+}
+
+.colors-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid rgba(216, 210, 210, 0.767);
+  /* border: 2px solid rgba(216, 210, 210, 0.767); */
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.color-inner-div {
+  display: flex;
+  /* flex-wrap: wrap; */
+  justify-content: center;
+  padding: 5px;
+  min-width: 110px;
+}
+
+.color-inner-div > div {
+  flex-basis: 15%;
+}
+
+/* .color-picker {
+  width: 100%;
+} */
+
+.slide-indicator {
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  color: #080808;
+  padding: 0 20%;
+}
+
+.slide-indicator-line {
+  flex: 1;
+  height: 1px;
+  background-color: #080808;
+  margin: 0 10px;
+}

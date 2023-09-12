@@ -1,0 +1,104 @@
+#root {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.go-back {
+  position: fixed;
+  top: 1rem;
+  left: 1.2rem;
+}
+
+.options-wrap {
+  position: absolute;
+  max-width: 100vw;
+  left: 0;
+  right: 0;
+  padding: 0 1.2rem;
+  bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 0.5rem;
+}
+@media screen and (min-width: 640px) {
+  .options-wrap {
+    bottom: 3rem;
+  }
+
+  .go-back {
+    top: 50px;
+    left: 50px;
+  }
+}
+.menu-icon-wrapper {
+  display: flex;
+  gap: 0.5rem;
+  right: 2rem;
+  bottom: 0;
+  flex-flow: column-reverse;
+}
+
+@media screen and (min-width: 640px) {
+  .options-wrap {
+    padding: 0 50px;
+    bottom: 50px;
+  }
+  .menu-icon-wrapper {
+    flex-direction: row;
+  }
+}
+
+.icon-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.6rem;
+  width: 140px;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  background-color: rgb(255, 255, 255);
+  padding: 5px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon:hover {
+  cursor: pointer;
+}
+
+.icon img {
+  width: 1.2rem;
+  object-fit: contain;
+}
+
+@media screen and (min-width: 640px) {
+  .icon {
+    width: 40px;
+    height: 40px;
+  }
+  .icon img {
+    width: 19px;
+  }
+}
+.button-menu {
+  color: white;
+  background-color: #242424;
+  border: none;
+  outline: none;
+  /* font-family: 'popins', sans-serif; */
+}
+
+.button-menu:focus {
+  outline: none;
+}
