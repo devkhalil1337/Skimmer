@@ -4,6 +4,7 @@ import useColorStore from "../../Utils/store";
 import { Select, MenuItem } from "@mui/material";
 import axios from "axios";
 import "./index.css";
+import * as emailjs from "emailjs-com";
 
 const defaultUser = {
   firstName: "",
@@ -117,9 +118,11 @@ const Menu = ({ options }) => {
       enginePrice: selectedOptions["Engine options (single select)"]?.price,
       trailerName: selectedOptions["Trailer options (single select)"]?.option,
       trailerPrice: selectedOptions["Trailer options (single select)"]?.price,
-      hullColor: colors["Hull Color"],
-      powerPoles: colors["Power Poles"],
-      polingPlatform: colors["Poling Platform"],
+      hullColor: colors["Hull Color"] ? colors["Hull Color"] : "#000000",
+      powerPoles: colors["Power Poles"] ? colors["Power Poles"] : "#000000",
+      polingPlatform: colors["Poling Platform"]
+        ? colors["Poling Platform"]
+        : "#000000",
       accessories: selectedOptions["Accessories (multi-select)"]
         .map((item, index) => `(${index + 1}) ${item}`)
         .join("     "),
@@ -140,10 +143,6 @@ const Menu = ({ options }) => {
       trimOptions: selectedOptions["Trim options (multi-select)"]
         .map((item, index) => `(${index + 1}) ${item}`)
         .join("     "),
-
-      message_html: JSON.stringify({
-        colors: colors,
-      }),
     };
     console.log(selectedOptions);
     console.log(colors);
@@ -157,57 +156,43 @@ const Menu = ({ options }) => {
       "address",
     ];
 
-    if (requiredColors.every((color) => colors[color])) {
-      if (requiredUserFields.every((field) => userForm[field])) {
-        try {
-          await emailjs.send(
-            "service_lix0k54",
-            "template_mdo5amt",
-            templateParams,
-            "MX384zq_9Yg81JBDP"
-          );
+    if (requiredUserFields.every((field) => userForm[field])) {
+      try {
+        await emailjs.send(
+          "service_w20b9n7",
+          "template_55qzaql",
+          templateParams,
+          "YSzEnVrRbMS2a86t1"
+        );
 
-          alert("Form submitted successfully");
-          setUserForm(defaultUser);
-        } catch (error) {
-          console.error("Error submitting form:", error);
-          alert("Error submitting form. Please try again.");
-        }
-      } else {
-        const missingFields = requiredUserFields.filter(
-          (field) => !userForm[field]
-        );
-        alert(
-          `Please provide the following user details: ${missingFields.join(
-            ", "
-          )}`
-        );
+        alert("Form submitted successfully");
+        setUserForm(defaultUser);
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        alert("Error submitting form. Please try again.");
       }
     } else {
-      const missingColors = requiredColors.filter((color) => !colors[color]);
+      const missingFields = requiredUserFields.filter(
+        (field) => !userForm[field]
+      );
       alert(
-        `Please provide the following color details: ${missingColors.join(
-          ", "
-        )}`
+        `Please provide the following user details: ${missingFields.join(", ")}`
       );
     }
-
-    console.log(selectedOptions);
-    console.log(colors);
   };
 
   return (
-    <div className='menu-container'>
-      <div className='centered'>
-        <div className='menu-header'>Total: ${totalPrice.toFixed(2)}</div>
-        <div className='menu-header-feature'>Pick Options</div>
+    <div className="menu-container">
+      <div className="centered">
+        <div className="menu-header">Total: ${totalPrice.toFixed(2)}</div>
+        <div className="menu-header-feature">Pick Options</div>
       </div>
 
-      <div className='menu-items-container'>
-        <div className='menu-items'>
+      <div className="menu-items-container">
+        <div className="menu-items">
           {Object.entries(options).map(([heading, items], index) => (
-            <div className='menu-items-1' key={index}>
-              <div className='menu-heading'>{heading.split("(")[0].trim()}</div>
+            <div className="menu-items-1" key={index}>
+              <div className="menu-heading">{heading.split("(")[0].trim()}</div>
               {heading.includes("(single select)") ? (
                 <Select
                   value={selectedOptions[heading]?.option || "default"}
@@ -246,10 +231,10 @@ const Menu = ({ options }) => {
               ) : (
                 <>
                   {items.map((item, idx) => (
-                    <div key={idx} className='menu-item'>
+                    <div key={idx} className="menu-item">
                       <input
                         id={item.name + item.price}
-                        type='checkbox'
+                        type="checkbox"
                         checked={selectedOptions[heading].includes(item.name)}
                         onChange={(e) =>
                           handleMultiSelectChange(heading, item.name)
@@ -267,142 +252,142 @@ const Menu = ({ options }) => {
         </div>
 
         <hr />
-        <div className='centered'>
-          <div className='menu-header-info'>User Information</div>
+        <div className="centered">
+          <div className="menu-header-info">User Information</div>
         </div>
-        <div className='user-form'>
-          <div className='form-field'>
-            <label htmlFor='firstName'>First Name*</label>
+        <div className="user-form">
+          <div className="form-field">
+            <label htmlFor="firstName">First Name*</label>
             <input
-              type='text'
-              id='firstName'
-              name='firstName'
+              type="text"
+              id="firstName"
+              name="firstName"
               value={userForm.firstName}
               onChange={handleUserFormChange}
               required
-              placeholder='First Name'
+              placeholder="First Name"
             />
             {formErrors.firstName && (
-              <div className='error-message'>{formErrors.firstName}</div>
+              <div className="error-message">{formErrors.firstName}</div>
             )}
           </div>
-          <div className='form-field'>
-            <label htmlFor='lastName'>Last Name*</label>
+          <div className="form-field">
+            <label htmlFor="lastName">Last Name*</label>
             <input
-              type='text'
-              id='lastName'
-              name='lastName'
+              type="text"
+              id="lastName"
+              name="lastName"
               value={userForm.lastName}
               onChange={handleUserFormChange}
               required
-              placeholder='Last Name'
+              placeholder="Last Name"
             />
             {formErrors.lastName && (
-              <div className='error-message'>{formErrors.lastName}</div>
+              <div className="error-message">{formErrors.lastName}</div>
             )}
           </div>
-          <div className='form-field'>
-            <label htmlFor='phone'>Phone*</label>
+          <div className="form-field">
+            <label htmlFor="phone">Phone*</label>
             <input
-              type='tel'
-              id='phone'
-              name='phone'
+              type="tel"
+              id="phone"
+              name="phone"
               value={userForm.phone}
               onChange={handleUserFormChange}
               required
-              placeholder='Phone Number'
+              placeholder="Phone Number"
             />
             {formErrors.phone && (
-              <div className='error-message'>{formErrors.phone}</div>
+              <div className="error-message">{formErrors.phone}</div>
             )}
           </div>
-          <div className='form-field'>
-            <label htmlFor='email'>Email*</label>
+          <div className="form-field">
+            <label htmlFor="email">Email*</label>
             <input
-              type='email'
-              id='email'
-              name='email'
+              type="email"
+              id="email"
+              name="email"
               value={userForm.email}
               onChange={handleUserFormChange}
               required
-              placeholder='Email'
+              placeholder="Email"
             />
             {formErrors.email && (
-              <div className='error-message'>{formErrors.email}</div>
+              <div className="error-message">{formErrors.email}</div>
             )}
           </div>
-          <div className='form-field'>
-            <label htmlFor='address'>Address*</label>
+          <div className="form-field">
+            <label htmlFor="address">Address*</label>
             <input
-              type='text'
-              id='address'
-              name='address'
+              type="text"
+              id="address"
+              name="address"
               value={userForm.address}
               onChange={handleUserFormChange}
               required
-              placeholder='Address'
+              placeholder="Address"
             />
             {formErrors.address && (
-              <div className='error-message'>{formErrors.address}</div>
+              <div className="error-message">{formErrors.address}</div>
             )}
           </div>
-          <div className='form-field'>
-            <label htmlFor='streetAddress'>Street Address</label>
+          <div className="form-field">
+            <label htmlFor="streetAddress">Street Address</label>
             <input
-              type='text'
-              id='streetAddress'
-              name='streetAddress'
+              type="text"
+              id="streetAddress"
+              name="streetAddress"
               value={userForm.streetAddress}
               onChange={handleUserFormChange}
-              placeholder='Street Address'
+              placeholder="Street Address"
             />
           </div>
-          <div className='form-field'>
-            <label htmlFor='city'>City</label>
+          <div className="form-field">
+            <label htmlFor="city">City</label>
             <input
-              type='text'
-              id='city'
-              name='city'
+              type="text"
+              id="city"
+              name="city"
               value={userForm.city}
               onChange={handleUserFormChange}
-              placeholder='city'
+              placeholder="city"
             />
           </div>
-          <div className='form-field'>
-            <label htmlFor='state'>State</label>
+          <div className="form-field">
+            <label htmlFor="state">State</label>
             <input
-              type='text'
-              id='state'
-              name='state'
+              type="text"
+              id="state"
+              name="state"
               value={userForm.state}
               onChange={handleUserFormChange}
-              placeholder='State'
+              placeholder="State"
             />
           </div>
-          <div className='form-field'>
-            <label htmlFor='postalZip'>Postal Zip</label>
+          <div className="form-field">
+            <label htmlFor="postalZip">Postal Zip</label>
             <input
-              type='text'
-              id='postalZip'
-              name='postalZip'
+              type="text"
+              id="postalZip"
+              name="postalZip"
               value={userForm.postalZip}
               onChange={handleUserFormChange}
-              placeholder='Postal Zip'
+              placeholder="Postal Zip"
             />
           </div>
-          <div className='form-field'>
-            <label htmlFor='country'>Country</label>
+          <div className="form-field">
+            <label htmlFor="country">Country</label>
             <select
-              id='country'
-              name='country'
+              id="country"
+              name="country"
               value={userForm.country}
               onChange={handleUserFormChange}
             >
-              <option value=''>Select a country</option>
-              <option value='USA'>USA</option>
-              <option value='Canada'>Canada</option>
-              <option value='Mexico'>Mexico</option>
-              <option value='Other'>Other</option>
+              <option value="">Select a country</option>
+              <option value="USA">USA</option>
+              <option value="Canada">Canada</option>
+              <option value="Mexico">Mexico</option>
+              <option value="Other">Other</option>
             </select>
           </div>
           {/* {Object.entries(colorStore.colors).map(([part, hexColor]) => (
@@ -417,8 +402,8 @@ const Menu = ({ options }) => {
         </div>
       ))} */}
         </div>
-        <div className='centered'>
-          <button className='submit-button' onClick={handleSubmit}>
+        <div className="centered">
+          <button className="submit-button" onClick={handleSubmit}>
             Submit
           </button>
         </div>
